@@ -11,17 +11,17 @@ const accountSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  passwordhash: {
+  passwordHash: {
     type: String,
     unique: false,
     required: true,
   },
-  firstname: {
+  firstName: {
     type: String,
     unique: false,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     unique: false,
     required: true,

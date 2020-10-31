@@ -18,7 +18,7 @@ function configSwagger(app) {
       basePath: '/',
     },
     // List of files to be processes. You can also set globs './routes/*.js'
-    apis: ['./routes/*.js'],
+    apis: ['./src/routes/*.js'],
   };
   const specs = swaggerJsdoc(options);
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));

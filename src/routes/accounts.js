@@ -13,14 +13,6 @@ const router = express.Router();
  *    tags:
  *      - Accounts
  *    description: Fetch all users
- *    parameters:
- *      - in: path
- *        name: accountId
- *        schema:
- *          type: integer
- *          minimum: 0
- *        required: true
- *        description: The accountId
  *    responses:
  *      '200':
  *        description: All users
@@ -42,7 +34,7 @@ router.get('', async function(req, res, next) {
  *      - in: path
  *        name: accountId
  *        schema:
- *          type: integer
+ *          type: string
  *          minimum: 0
  *        required: true
  *        description: The accountId
