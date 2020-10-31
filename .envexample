@@ -1,0 +1,4 @@
+NODE_ENV=dev
+HOST=mongodb://localhost:27017/
+DATABASE=nomhunter
+PORT=3000

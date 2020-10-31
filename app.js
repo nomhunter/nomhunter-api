@@ -1,20 +1,28 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const morgan = require('morgan');
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const accountsRouter = require('./routes/accounts');
 const swaggerConfig = require('./swagger/swaggerConfig');
+const connectDB = require('./database/dbConnect')
+require('./config/config');
+
+connectDB();
+
 const app = express();
 
-app.use(logger('dev'));
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/user', usersRouter);
+app.use('/accounts', accountsRouter);
 
 swaggerConfig(app);
 
