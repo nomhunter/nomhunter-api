@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node src/bin/www",
+    "debug": "nodemon --inspect src/bin/www",
+    "lint": "eslint ./src --ext .js",
+    "lint-fix": "eslint ./src --ext .js --fix"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -17,5 +20,9 @@
     "swagger-jsdoc": "^5.0.0",
     "swagger-ui-express": "^4.1.4",
     "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-google": "^0.14.0"
   }
 }

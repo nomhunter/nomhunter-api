@@ -1,14 +1,14 @@
-var express = require('express');
-var { v4: uuidv4 } = require('uuid');
-var {
-  saveCallback
+const express = require('express');
+const {v4: uuidv4} = require('uuid');
+const {
+  saveCallback,
 } = require('../database/mongoService');
-var AccountModel = require('../models/account');
-var router = express.Router();
+const AccountModel = require('../models/account');
+const router = express.Router();
 
 /**
  * @swagger
- * '/accounts/{accountId}':
+ * '/accounts':
  *  get:
  *    tags:
  *      - Accounts
@@ -25,7 +25,7 @@ var router = express.Router();
  *      '200':
  *        description: All users
  */
-router.get('', async function (req, res, next) {
+router.get('', async function(req, res, next) {
   await AccountModel.find((err, accounts) => {
     res.send(accounts);
   });
@@ -50,15 +50,15 @@ router.get('', async function (req, res, next) {
  *      '200':
  *        description: All users
  */
-router.get('/:accountId', async function (req, res, next) {
+router.get('/:accountId', async function(req, res, next) {
   await AccountModel.findOne({
-    accountId: req.params.accountId
+    accountId: req.params.accountId,
   }, (err, account) => {
     if (account) {
       res.send(account);
     } else {
       res.send({
-        "error": "AccountId not found"
+        'error': 'AccountId not found',
       });
     }
   });
@@ -75,10 +75,10 @@ router.get('/:accountId', async function (req, res, next) {
  *      '200':
  *        description: Account successfully created
  */
-router.post('/create', function (req, res, next) {
-  var newAccount = AccountModel({
+router.post('/create', function(req, res, next) {
+  const newAccount = AccountModel({
     ...req.body,
-    accountId: uuidv4()
+    accountId: uuidv4(),
   });
   newAccount.save((err, dbRes) => saveCallback(err, newAccount, res));
 });
